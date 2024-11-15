@@ -2,27 +2,27 @@ import json
 import streamlit as st
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-import pandas as pd
 import base64
 
 
+# Cache the base64 encoding of the binary file
 @st.cache_data()
 def get_base64_of_bin_file(bin_file):
     with open(bin_file, 'rb') as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
+        return base64.b64encode(f.read()).decode()
 
 
+# Set the background of the Streamlit app
 def set_background(png_file):
     bin_str = get_base64_of_bin_file(png_file)
-    page_bg_img = '''
+    page_bg_img = f'''
     <style>
-    .stApp {
-    background-image: url("data:image/png;base64,%s");
-    background-size: cover;
-    }
+    .stApp {{
+        background-image: url("data:image/png;base64,{bin_str}");
+        background-size: cover;
+    }}
     </style>
-    ''' % bin_str
+    '''
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
 
@@ -34,12 +34,8 @@ st.markdown("<h1 style='text-align: center;'>Wedding RSVP</h1>", unsafe_allow_ht
 st.header("Join us for the Wedding of Sadhana & Vikas")
 st.write("**Date:** December 14th and 15th")
 st.write("**Venue:** Poornima Convention Hall, Jayanagar, Bangalore")
-st.write(
-    "We are excited to celebrate this special day with you!"
-)
-st.write(
-    "Please let us know if you can join by filling out the form below."
-)
+st.write("We are excited to celebrate this special day with you!")
+st.write("*Please let us know if you can join us by filling out the form below.*")
 
 # Google Sheets integration setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -50,6 +46,7 @@ gc = gspread.authorize(credentials)
 # Open the Google Sheet
 gsheet = gc.open("Wedding RSVP").sheet1
 
+# Set background image
 set_background('background.jpg')
 
 # RSVP form
@@ -65,11 +62,9 @@ with st.form("rsvp_form"):
     submitted = st.form_submit_button("Submit RSVP")
     
     if submitted:
-        if name:
+        if name.strip():
             # Append the data to Google Sheets
             gsheet.append_row([name, guests, attend_reception, attend_wedding])
             st.success("Thank you for your RSVP! We'll see you soon!")
         else:
             st.error("Please fill out all required fields.")
-
-
