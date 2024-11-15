@@ -4,6 +4,42 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import base64
 
+# Streamlit application for Wedding RSVP
+st.set_page_config(page_title="Wedding RSVP", page_icon="❤️")
+
+hide_streamlit_style = """
+                <style>
+                div[data-testid="stToolbar"] {
+                visibility: hidden;
+                height: 0%;
+                position: fixed;
+                }
+                div[data-testid="stDecoration"] {
+                visibility: hidden;
+                height: 0%;
+                position: fixed;
+                }
+                div[data-testid="stStatusWidget"] {
+                visibility: hidden;
+                height: 0%;
+                position: fixed;
+                }
+                #MainMenu {
+                visibility: hidden;
+                height: 0%;
+                }
+                header {
+                visibility: hidden;
+                height: 0%;
+                }
+                footer {
+                visibility: hidden;
+                height: 0%;
+                }
+                </style>
+                """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 
 # Cache the base64 encoding of the binary file
 @st.cache_data()
@@ -26,8 +62,7 @@ def set_background(png_file):
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
 
-# Streamlit application for Wedding RSVP
-st.set_page_config(page_title="Wedding RSVP", page_icon="💒")
+
 
 # Page title and introduction
 st.markdown("<h1 style='text-align: center;'>Wedding RSVP</h1>", unsafe_allow_html=True)
@@ -68,11 +103,3 @@ with st.form("rsvp_form"):
             st.success("Thank you for your RSVP! We'll see you soon!")
         else:
             st.error("Please fill out all required fields.")
-
-hide_streamlit_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
