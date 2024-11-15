@@ -1,3 +1,4 @@
+import json
 import streamlit as st
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -16,7 +17,8 @@ st.write(
 
 # Google Sheets integration setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-credentials = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
+credentials_dict = json.loads(st.secrets["GOOGLE_CREDENTIALS"])
+credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_dict, scope)
 gc = gspread.authorize(credentials)
 
 # Open the Google Sheet
