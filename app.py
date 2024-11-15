@@ -68,3 +68,11 @@ with st.form("rsvp_form"):
             st.success("Thank you for your RSVP! We'll see you soon!")
         else:
             st.error("Please fill out all required fields.")
+
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
