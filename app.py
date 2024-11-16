@@ -60,7 +60,7 @@ def style_submit_button():
     </style>
     '''
     st.markdown(custom_button_css, unsafe_allow_html=True)
-    
+
     
 # Cache the base64 encoding of the binary file
 @st.cache_data()
@@ -125,7 +125,7 @@ with st.form("rsvp_form"):
     if submitted:
         if name.strip():
             # Append the data to Google Sheets
-            st.snow()
+            st.balloons()
             gsheet.append_row([name, guests, attend_both, attend_reception, attend_wedding])
             st.success("Thank you for your RSVP! We'll see you soon!")
         else:
