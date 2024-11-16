@@ -82,7 +82,7 @@ gc = gspread.authorize(credentials)
 gsheet = gc.open("Wedding RSVP").sheet1
 
 # Set background image
-set_background('background.jpg')
+set_background('background.png')
 
 # RSVP form
 with st.form("rsvp_form"):
