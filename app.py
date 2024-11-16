@@ -40,7 +40,28 @@ hide_streamlit_style = """
                 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-
+# Add custom CSS to style the submit button
+def style_submit_button():
+    custom_button_css = '''
+    <style>
+    div.stButton > button:first-child {
+        background-color: #F2E6F9;
+        color: #800080;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    div.stButton > button:first-child:hover {
+        background-color: #e4befa;
+    }
+    </style>
+    '''
+    st.markdown(custom_button_css, unsafe_allow_html=True)
+    
+    
 # Cache the base64 encoding of the binary file
 @st.cache_data()
 def get_base64_of_bin_file(bin_file):
@@ -66,11 +87,10 @@ def set_background(png_file):
 
 # Page title and introduction
 st.markdown("<h1 style='text-align: center;'>Wedding RSVP</h1>", unsafe_allow_html=True)
-st.header("Join us for the Wedding of Sadhana & Vikas")
-st.write("**Date:** December 14th and 15th")
-st.write("**Venue:** Poornima Convention Hall, Jayanagar, Bangalore")
-st.write("We are excited to celebrate this special day with you!")
-st.write("***Please let us know if you can join us by filling out the form below.***")
+st.markdown("<h3 style='text-align: center;'>Sadhana & Vikas</h3>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: center;'><i>We are excited to celebrate this special day with you!</i></h6>", unsafe_allow_html=True)
+
+# st.write("*We are excited to celebrate this special day with you!*")
 
 # Google Sheets integration setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -84,15 +104,19 @@ gsheet = gc.open("Wedding RSVP").sheet1
 # Set background image
 set_background('background.png')
 
+# Apply button styling
+style_submit_button()
+
 # RSVP form
 with st.form("rsvp_form"):
+    st.write("Please let us know if you can join us by filling the form below")
     name = st.text_input("**Name**", placeholder="Please enter you name", max_chars=100)
     guests = st.number_input("**Number of Guests**", min_value=1, max_value=10, step=1)
     # st.write("**Reception** *14-December | 6:30PM onwards*")
     attend_both = st.checkbox("**Reception and Wedding**")
-    attend_reception = st.checkbox("**Reception** *14-December | 6:30PM onwards*")
+    attend_reception = st.checkbox("**Reception** *| 14-December-2024*")
     # st.write("**Wedding** *15-December | 12:01PM Muhurthum*")
-    attend_wedding = st.checkbox("**Wedding** *15-December | 12:01PM Muhurthum*")
+    attend_wedding = st.checkbox("**Wedding** *| 15-December-2024*")
     
     
     # Submit button
@@ -101,7 +125,11 @@ with st.form("rsvp_form"):
     if submitted:
         if name.strip():
             # Append the data to Google Sheets
+            st.balloons()
             gsheet.append_row([name, guests, attend_both, attend_reception, attend_wedding])
             st.success("Thank you for your RSVP! We'll see you soon!")
         else:
             st.error("Please fill out all required fields.")
+
+
+st.write("**Venue:** Poornima Convention Hall, Jayanagar, Bangalore")
