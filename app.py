@@ -10,10 +10,20 @@ st.set_page_config(page_title="Wedding RSVP", page_icon="❤️")
 st.markdown('''
     <style>
     h1, h2, h3, h4, h5, h6 {
-        line-height: 0.72; /* Adjust the value to reduce/increase spacing */
+        line-height: 0.5; /* Adjust the value to reduce/increase spacing */
     }
     </style>
 ''', unsafe_allow_html=True)
+
+header_css = '''
+<style>
+h1 {
+    margin-top: -50px; /* Adjust this value to bring the header closer to the top */
+    margin-bottom: 5px; /* Adjust this value to reduce spacing below the header */
+}
+</style>
+'''
+st.markdown(header_css, unsafe_allow_html=True)
 
 hide_streamlit_style = """
                 <style>
@@ -117,7 +127,7 @@ style_submit_button()
 
 # RSVP form
 with st.form("rsvp_form"):
-    st.write("Please let us know if you can join us by filling the form below")
+    st.write("Please let us know if you can join us by filling the form")
     name = st.text_input("**Name**", placeholder="Please enter you name", max_chars=100)
     guests = st.number_input("**Number of Guests**", min_value=1, max_value=10, step=1)
     # st.write("**Reception** *14-December | 6:30PM onwards*")
