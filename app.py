@@ -86,12 +86,13 @@ set_background('background.png')
 
 # RSVP form
 with st.form("rsvp_form"):
-    name = st.text_input("**Name**", placeholder="Enter your full name", max_chars=100)
+    name = st.text_input("**Name**", placeholder="Please enter you name", max_chars=100)
     guests = st.number_input("**Number of Guests**", min_value=1, max_value=10, step=1)
-    st.write("**Reception** *14-December | 6:30PM onwards*")
-    attend_reception = st.checkbox("I will attend the Reception")
-    st.write("**Wedding** *15-December | 12:01PM Muhurthum*")
-    attend_wedding = st.checkbox("I will attend the Wedding")
+    # st.write("**Reception** *14-December | 6:30PM onwards*")
+    attend_reception = st.checkbox("**Reception** *14-December | 6:30PM onwards*")
+    # st.write("**Wedding** *15-December | 12:01PM Muhurthum*")
+    attend_wedding = st.checkbox("**Wedding** *15-December | 12:01PM Muhurthum*")
+    attend_both = st.checkbox("**Reception and Wedding**")
     
     # Submit button
     submitted = st.form_submit_button("Submit RSVP")
