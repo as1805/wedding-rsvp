@@ -81,9 +81,7 @@ def set_background(png_file):
     </style>
     '''
     st.markdown(page_bg_img, unsafe_allow_html=True)
-
-
-
+    
 
 # Page title and introduction
 st.markdown("<h1 style='text-align: center;'>Wedding RSVP</h1>", unsafe_allow_html=True)
@@ -114,9 +112,9 @@ with st.form("rsvp_form"):
     guests = st.number_input("**Number of Guests**", min_value=1, max_value=10, step=1)
     # st.write("**Reception** *14-December | 6:30PM onwards*")
     attend_both = st.checkbox("**Reception and Wedding**")
-    attend_reception = st.checkbox("**Reception** *| 14-December-2024*")
+    attend_reception = st.checkbox("**Reception** *[14-December-2024]*")
     # st.write("**Wedding** *15-December | 12:01PM Muhurthum*")
-    attend_wedding = st.checkbox("**Wedding** *| 15-December-2024*")
+    attend_wedding = st.checkbox("**Wedding** *[15-December-2024]*")
     
     
     # Submit button
