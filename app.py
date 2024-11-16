@@ -125,7 +125,7 @@ with st.form("rsvp_form"):
     if submitted:
         if name.strip():
             # Append the data to Google Sheets
-            st.balloons()
+            st.snow()
             gsheet.append_row([name, guests, attend_both, attend_reception, attend_wedding])
             st.success("Thank you for your RSVP! We'll see you soon!")
         else:
