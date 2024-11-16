@@ -2,6 +2,7 @@
 base="light"
 primaryColor = "#A64DFF"  # Lighter purple for primaryColor
 backgroundColor = "#F8F8F8"  # Off-white background color
-secondaryBackgroundColor = "#F2E6F9"  # Very light purple background color
+#secondaryBackgroundColor = "#F2E6F9"  # Very light purple background color
+secondaryBackgroundColor = "#ECE9F7"
 textColor = "#800080"  # Purple text color
 font = "sans serif"  # Font can be changed here
