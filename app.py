@@ -6,6 +6,14 @@ import base64
 
 # Streamlit application for Wedding RSVP
 st.set_page_config(page_title="Wedding RSVP", page_icon="❤️")
+# Add custom CSS to control header line spacing
+st.markdown('''
+    <style>
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 0.72; /* Adjust the value to reduce/increase spacing */
+    }
+    </style>
+''', unsafe_allow_html=True)
 
 hide_streamlit_style = """
                 <style>
