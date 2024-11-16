@@ -70,7 +70,7 @@ st.header("Join us for the Wedding of Sadhana & Vikas")
 st.write("**Date:** December 14th and 15th")
 st.write("**Venue:** Poornima Convention Hall, Jayanagar, Bangalore")
 st.write("We are excited to celebrate this special day with you!")
-st.write("*Please let us know if you can join us by filling out the form below.*")
+st.write("***Please let us know if you can join us by filling out the form below.***")
 
 # Google Sheets integration setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
