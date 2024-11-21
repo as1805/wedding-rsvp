@@ -110,7 +110,7 @@ set_background('background.png')
 style_submit_button()
 
 # RSVP form
-#with st.form("rsvp_form"):
+with st.form("rsvp_form"):
 st.write("Please let us know if you can join us by filling the form")
 name = st.text_input("**Name**", placeholder="Please enter you name", max_chars=100)
 guests = st.number_input("**Number of Guests**", min_value=1, max_value=10, step=1)
