@@ -96,8 +96,12 @@ credentials_dict = json.loads(st.secrets["GOOGLE_CREDENTIALS"])
 credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_dict, scope)
 gc = gspread.authorize(credentials)
 
+try:
+    gsheet = gc.open("Wedding RSVP").sheet1
+except Exception as e:
+    st.error(f"Error opening Google Sheet: {e}")
 # Open the Google Sheet
-gsheet = gc.open("Streamlit Playground").sheet1
+#gsheet = gc.open("Streamlit Playground").sheet1
 
 # Set background image
 set_background('background.png')
