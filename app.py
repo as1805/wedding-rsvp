@@ -97,7 +97,7 @@ credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_dict,
 gc = gspread.authorize(credentials)
 
 try:
-    gsheet = gc.open("Wedding RSVP").sheet1
+    gsheet = gc.open("Streamlit Playground").sheet1
 except Exception as e:
     st.error(f"Error opening Google Sheet: {e}")
 # Open the Google Sheet
