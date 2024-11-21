@@ -40,7 +40,7 @@ hide_streamlit_style = """
                 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-# Add custom CSS to style the submit button
+# Add custom CSS to style the submit button and the radio menu
 def style_submit_button():
     custom_button_css = '''
     <style>
@@ -61,7 +61,34 @@ def style_submit_button():
     '''
     st.markdown(custom_button_css, unsafe_allow_html=True)
 
-    
+def style_radio_menu():
+    menu_css = '''
+    <style>
+    .stRadio {
+        background-color: #f0e6f9;  /* Light purple background */
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+    .stRadio label {
+        font-size: 18px;
+        font-weight: bold;
+        color: #800080;  /* Purple color for the text */
+    }
+    .stRadio div div {
+        font-size: 16px;
+        padding: 8px 12px;
+        border-radius: 5px;
+    }
+    .stRadio div div:hover {
+        background-color: #e4befa;  /* Hover effect with a lighter purple */
+    }
+    </style>
+    '''
+    st.markdown(menu_css, unsafe_allow_html=True)
+
+
 # Cache the base64 encoding of the binary file
 @st.cache_data()
 def get_base64_of_bin_file(bin_file):
@@ -99,6 +126,9 @@ set_background('background.png')
 
 # Apply button styling
 style_submit_button()
+
+# Apply radio menu styling
+style_radio_menu()
 
 # Streamlit Tabs for navigation
 tab_selection = st.radio("Navigate", ["Home", "RSVP"])
