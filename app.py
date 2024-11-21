@@ -81,14 +81,7 @@ def set_background(png_file):
     </style>
     '''
     st.markdown(page_bg_img, unsafe_allow_html=True)
-    
 
-# Page title and introduction
-st.markdown("<h1 style='text-align: center;'>Wedding RSVP</h1>", unsafe_allow_html=True)
-st.markdown("<h3 style='text-align: center;'>James Playground</h3>", unsafe_allow_html=True)
-st.markdown("<h6 style='text-align: center;'><i>We are excited to celebrate this special day with you!</i></h6>", unsafe_allow_html=True)
-
-# st.write("*We are excited to celebrate this special day with you!*")
 
 # Google Sheets integration setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -100,8 +93,6 @@ try:
     gsheet = gc.open("Streamlit Playground").sheet1
 except Exception as e:
     st.error(f"Error opening Google Sheet: {e}")
-# Open the Google Sheet
-#gsheet = gc.open("Streamlit Playground").sheet1
 
 # Set background image
 set_background('background.png')
@@ -109,29 +100,36 @@ set_background('background.png')
 # Apply button styling
 style_submit_button()
 
-# RSVP form
-with st.form("rsvp_form"):
-  st.write("Please let us know if you can join us by filling the form")
-  name = st.text_input("**Name**", placeholder="Please enter you name", max_chars=100)
-  guests = st.number_input("**Number of Guests**", min_value=1, max_value=10, step=1)
-  st.write("**Reception** *14-December | 6:30PM onwards*")
-  attend_both = st.checkbox("**Reception and Wedding**")
-  attend_reception = st.checkbox("**Reception** *[14-December-2024]*")
-  st.write("**Wedding** *15-December | 12:01PM Muhurthum*")
-  attend_wedding = st.checkbox("**Wedding**&nbsp;&nbsp;*[15-December-2024]*")
-      
-  
-  # Submit button
-  submitted = st.form_submit_button("Submit RSVP")
+# Streamlit Tabs for navigation
+tab_selection = st.radio("Navigate", ["Home", "RSVP"])
 
-# if submitted:
-if name.strip():
-    # Append the data to Google Sheets
-    st.balloons()
-    gsheet.append_row([name, guests, attend_both, attend_reception, attend_wedding])
-    st.success("Thank you for your RSVP! We'll see you soon!")
-else:
-  st.error("Please fill out all required fields.")
+# Home page content
+if tab_selection == "Home":
+    st.markdown("<h1 style='text-align: center;'>Wedding RSVP</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center;'>James Playground</h3>", unsafe_allow_html=True)
+    st.markdown("<h6 style='text-align: center;'><i>We are excited to celebrate this special day with you!</i></h6>", unsafe_allow_html=True)
+    st.write("**Venue:** Somewhere Awesome, U.S.A")
 
+# RSVP form content
+if tab_selection == "RSVP":
+    st.markdown("<h1 style='text-align: center;'>RSVP Form</h1>", unsafe_allow_html=True)
+    with st.form("rsvp_form"):
+        st.write("Please let us know if you can join us by filling the form")
+        name = st.text_input("**Name**", placeholder="Please enter you name", max_chars=100)
+        guests = st.number_input("**Number of Guests**", min_value=1, max_value=10, step=1)
+        st.write("**Reception** *14-December | 6:30PM onwards*")
+        attend_both = st.checkbox("**Reception and Wedding**")
+        attend_reception = st.checkbox("**Reception** *[14-December-2024]*")
+        st.write("**Wedding** *15-December | 12:01PM Muhurthum*")
+        attend_wedding = st.checkbox("**Wedding**&nbsp;&nbsp;*[15-December-2024]*")
 
-st.write("**Venue:** Somewhere Awesome, U.S.A")
+        # Submit button
+        submitted = st.form_submit_button("Submit RSVP")
+
+    if name.strip():
+        # Append the data to Google Sheets
+        st.balloons()
+        gsheet.append_row([name, guests, attend_both, attend_reception, attend_wedding])
+        st.success("Thank you for your RSVP! We'll see you soon!")
+    else:
+        st.error("Please fill out all required fields.")
