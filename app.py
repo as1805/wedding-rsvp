@@ -97,7 +97,7 @@ credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_dict,
 gc = gspread.authorize(credentials)
 
 # Open the Google Sheet
-#gsheet = gc.open("Wedding RSVP").sheet1
+gsheet = gc.open("Wedding RSVP").sheet1
 
 # Set background image
 set_background('background.png')
