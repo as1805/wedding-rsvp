@@ -130,4 +130,4 @@ style_submit_button()
         #    st.error("Please fill out all required fields.")
 
 
-st.write("**Venue:** Somewhere Awesome, U.S.A)
+st.write("**Venue:** Somewhere Awesome, U.S.A")
