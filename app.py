@@ -130,7 +130,7 @@ if name.strip():
     st.balloons()
     gsheet.append_row([name, guests, attend_both, attend_reception, attend_wedding])
     st.success("Thank you for your RSVP! We'll see you soon!")
-# else:
+else:
   st.error("Please fill out all required fields.")
 
 
