@@ -91,10 +91,10 @@ st.markdown("<h6 style='text-align: center;'><i>We are excited to celebrate this
 # st.write("*We are excited to celebrate this special day with you!*")
 
 # Google Sheets integration setup
-#scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-#credentials_dict = json.loads(st.secrets["GOOGLE_CREDENTIALS"])
-#credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_dict, scope)
-#gc = gspread.authorize(credentials)
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+credentials_dict = json.loads(st.secrets["GOOGLE_CREDENTIALS"])
+credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_dict, scope)
+gc = gspread.authorize(credentials)
 
 # Open the Google Sheet
 #gsheet = gc.open("Wedding RSVP").sheet1
